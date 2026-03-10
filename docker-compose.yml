@@ -1,6 +1,6 @@
 services:
   ocr-service:
-    image: ${OCR_IMAGE:-indonesian-id-ocr:latest}
+    image: indonesian-id-ocr:latest
     container_name: ocr-service
     ports:
       - "5000:5000"
