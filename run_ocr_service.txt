@@ -1,0 +1,160 @@
+OCR SERVICE DOCKER RUNBOOK
+==========================
+
+Lokasi Aplikasi
+---------------
+Directory aplikasi:
+
+/apps/acs/ocr-id/ocr-id
+
+Sebelum menjalankan perintah apapun, masuk ke directory tersebut:
+
+cd /apps/acs/ocr-id/ocr-id
+
+
+Menjalankan Service
+-------------------
+Untuk menjalankan OCR service container di background:
+
+docker compose up -d
+
+Parameter:
+-d = menjalankan container di background
+
+
+Cek Container Berjalan
+----------------------
+Untuk melihat container yang sedang berjalan:
+
+docker ps
+
+Container yang diharapkan muncul:
+
+ocr-service
+
+
+Build Ulang Container
+---------------------
+Jika ada perubahan code atau dependency:
+
+docker compose up -d --build
+
+Parameter:
+--build = rebuild docker image dari Dockerfile
+
+
+Stop Service
+------------
+Untuk menghentikan service:
+
+docker compose down
+
+
+Restart Service
+---------------
+Untuk restart service:
+
+docker compose restart
+
+
+Melihat Logs Service
+--------------------
+Untuk melihat logs container:
+
+docker compose logs
+
+Untuk melihat logs secara realtime:
+
+docker compose logs -f
+
+Tekan CTRL + C untuk keluar dari mode realtime.
+
+
+Melihat Logs Container Tertentu
+-------------------------------
+Jika ingin melihat logs container OCR saja:
+
+docker logs ocr-service
+
+Realtime logs:
+
+docker logs -f ocr-service
+
+
+Cek Status Container
+--------------------
+Untuk melihat container yang sedang berjalan:
+
+docker ps
+
+Jika container berhenti:
+
+docker ps -a
+
+
+Test Service
+------------
+Test service dari server:
+
+curl http://localhost:5000
+
+Jika service berjalan dengan baik akan muncul response JSON dari aplikasi.
+
+
+Cek Penggunaan Resource
+-----------------------
+Untuk melihat penggunaan CPU dan memory container:
+
+docker stats
+
+
+Troubleshooting
+---------------
+Jika container tidak berjalan:
+
+1. Cek logs:
+
+docker compose logs
+
+2. Rebuild container:
+
+docker compose up -d --build
+
+3. Cek status container:
+
+docker ps -a
+
+
+Catatan Penting
+---------------
+OCR service menggunakan docker volume untuk menyimpan data:
+
+/app/uploads
+/root/.paddlex
+
+Volume ini akan tetap ada walaupun container di restart.
+
+
+Melihat Volume Docker
+---------------------
+
+docker volume ls
+
+
+Port Service
+------------
+OCR service berjalan pada port:
+
+5000
+
+Akses service melalui browser atau API:
+
+http://SERVER_IP:5000
+
+
+Quick Start (Untuk Admin)
+-------------------------
+
+cd /apps/acs/ocr-id/ocr-id
+docker compose up -d
+docker compose logs -f
