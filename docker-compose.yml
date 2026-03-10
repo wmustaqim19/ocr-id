@@ -1,5 +1,6 @@
 services:
   ocr-service:
+    build: .
     image: indonesian-id-ocr:latest
     container_name: ocr-service
     ports:
